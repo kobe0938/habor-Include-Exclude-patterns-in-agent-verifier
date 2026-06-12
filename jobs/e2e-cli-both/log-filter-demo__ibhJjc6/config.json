@@ -1,0 +1,73 @@
+{
+    "task": {
+        "path": "tmp-e2e/tasks/log-filter-demo",
+        "git_url": null,
+        "git_commit_id": null,
+        "name": null,
+        "ref": null,
+        "overwrite": false,
+        "download_dir": null,
+        "source": null
+    },
+    "trial_name": "log-filter-demo__ibhJjc6",
+    "trials_dir": "tmp-e2e/jobs/e2e-cli-both",
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+        "name": "oracle",
+        "import_path": null,
+        "model_name": null,
+        "skills": [],
+        "override_timeout_sec": null,
+        "override_setup_timeout_sec": null,
+        "max_timeout_sec": null,
+        "extra_allowed_hosts": [],
+        "include_logs": [
+            "trajectory.json",
+            "sessions/*"
+        ],
+        "exclude_logs": [
+            "sessions/session-2.jsonl"
+        ],
+        "kwargs": {},
+        "env": {},
+        "mcp_servers": []
+    },
+    "environment": {
+        "type": "daytona",
+        "import_path": null,
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "override_cpus": null,
+        "override_memory_mb": null,
+        "override_storage_mb": null,
+        "override_gpus": null,
+        "override_tpu": null,
+        "mounts": null,
+        "extra_docker_compose": [],
+        "env": {},
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "override_timeout_sec": null,
+        "max_timeout_sec": null,
+        "include_logs": [
+            "extra/*",
+            "debug.log"
+        ],
+        "exclude_logs": [
+            "debug.log"
+        ],
+        "env": {},
+        "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "2f0eb1e6-bec6-4deb-99f9-6decc2677fec"
+}

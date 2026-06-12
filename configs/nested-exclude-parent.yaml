@@ -1,0 +1,19 @@
+job_name: e2e-nested-exclude-parent
+jobs_dir: tmp-e2e/jobs
+n_attempts: 1
+n_concurrent_trials: 1
+environment:
+  type: daytona
+  delete: true
+agents:
+  - name: oracle
+    # Scenario B (the reverse): include a subfolder, exclude its parent.
+    # Expect: nothing survives the bulk download. "parent/*" also matches
+    # everything under parent/sub because fnmatch's * crosses "/", and
+    # exclude always wins, so the include cannot rescue the subfolder.
+    include_logs:
+      - "parent/sub/*"
+    exclude_logs:
+      - "parent/*"
+tasks:
+  - path: tmp-e2e/tasks/log-filter-demo

@@ -1,0 +1,30 @@
+version = "1.0"
+
+[task]
+name = "kobe0938/log-filter-demo"
+keywords = [ "e2e", "log-filtering",]
+
+[[task.authors]]
+name = "Kobe Chen"
+email = "xiaokunchen0@gmail.com"
+
+[metadata]
+author_name = "Kobe Chen"
+author_email = "xiaokunchen0@gmail.com"
+difficulty = "easy"
+category = "testing"
+tags = [ "e2e", "log-filtering",]
+description = "Demo task for testing agent/verifier log include_logs and exclude_logs filtering. The solution writes a multi-file log tree under /logs/agent and the verifier writes extra files under /logs/verifier so download filters have something to act on."
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0

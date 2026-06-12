@@ -1,0 +1,70 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-06-11T23:40:19.982823Z",
+    "harbor": {
+        "version": "0.13.1",
+        "git_commit_hash": "4195631ff616aca478bf7e14949e8a960d8a5950",
+        "is_editable": true
+    },
+    "invocation": [
+        "/Users/xiaokun/Desktop/github-exp/harbor/.claude/worktrees/golden-giggling-crescent/.venv/bin/harbor",
+        "run",
+        "-c",
+        "tmp-e2e/nested-exclude-parent.yaml"
+    ],
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "AgentTimeoutError",
+            "RewardFileNotFoundError",
+            "VerifierTimeoutError",
+            "RewardFileEmptyError",
+            "VerifierOutputParseError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "log-filter-demo",
+                "type": "local",
+                "digest": "sha256:a9664d450326690f666b92aeface703ed78c8e02f1a97effc79ba08af81d47ed",
+                "path": "tmp-e2e/tasks/log-filter-demo"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "oracle",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "include_logs": [
+                    "parent/sub/*"
+                ],
+                "exclude_logs": [
+                    "parent/*"
+                ],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "daytona",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

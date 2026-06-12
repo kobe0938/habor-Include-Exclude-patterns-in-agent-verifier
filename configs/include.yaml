@@ -1,0 +1,16 @@
+job_name: e2e-cfg-include
+jobs_dir: tmp-e2e/jobs
+n_attempts: 1
+n_concurrent_trials: 1
+environment:
+  type: daytona
+  delete: true
+agents:
+  - name: oracle
+    include_logs:
+      - "trajectory.json"
+verifier:
+  include_logs:
+    - "extra/*"
+tasks:
+  - path: tmp-e2e/tasks/log-filter-demo

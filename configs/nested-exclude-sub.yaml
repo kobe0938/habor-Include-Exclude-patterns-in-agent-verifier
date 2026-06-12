@@ -1,0 +1,17 @@
+job_name: e2e-nested-exclude-sub
+jobs_dir: tmp-e2e/jobs
+n_attempts: 1
+n_concurrent_trials: 1
+environment:
+  type: daytona
+  delete: true
+agents:
+  - name: oracle
+    # Scenario A: include the parent folder, exclude a subfolder inside it.
+    # Expect: parent/keep.txt survives; parent/sub/* is carved out.
+    include_logs:
+      - "parent/*"
+    exclude_logs:
+      - "parent/sub/*"
+tasks:
+  - path: tmp-e2e/tasks/log-filter-demo

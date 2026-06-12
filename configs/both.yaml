@@ -1,0 +1,23 @@
+job_name: e2e-cfg-both
+jobs_dir: tmp-e2e/jobs
+n_attempts: 1
+n_concurrent_trials: 1
+environment:
+  type: daytona
+  delete: true
+agents:
+  - name: oracle
+    # include narrows first, then exclude subtracts: exclude wins on overlap.
+    include_logs:
+      - "trajectory.json"
+      - "sessions/*"
+    exclude_logs:
+      - "sessions/session-2.jsonl"
+verifier:
+  include_logs:
+    - "extra/*"
+    - "debug.log"
+  exclude_logs:
+    - "debug.log"
+tasks:
+  - path: tmp-e2e/tasks/log-filter-demo

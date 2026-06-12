@@ -1,0 +1,4 @@
+Selected strategy: _DaytonaDirect
+Creating new AsyncDaytona client
+Building environment from /Users/xiaokun/Desktop/github-exp/harbor/.claude/worktrees/golden-giggling-crescent/tmp-e2e/tasks/log-filter-demo/environment/Dockerfile
+No files in '/logs/agent' matched include=['parent/sub/*'] exclude=['parent/*']; downloading nothing
