@@ -48,31 +48,16 @@ harbor run -p tasks/log-filter-demo -e daytona -a oracle --job-name e2e-cli-both
   --verifier-exclude-logs 'debug.log'
 ```
 
-### Results (see `jobs/<job-name>/.../agent|verifier`)
+## Results (see `jobs/`)
 
-| Scenario | `agent/` downloaded | `verifier/` downloaded |
-|---|---|---|
-| baseline | everything | everything |
-| exclude | `trajectory.json` (+`oracle.txt`) | all except `debug.log` |
-| include | `trajectory.json` (+`oracle.txt`) | `extra/trace.txt`, `reward.txt` |
-| both | `trajectory.json`, `sessions/session-1.jsonl` (+`oracle.txt`) | `extra/trace.txt`, `reward.txt` |
+**All runs behaved exactly as expected, and every CLI run (`e2e-cli-*`) produced
+file-for-file identical output to its config-file twin (`e2e-cfg-*`).**
+All trials scored reward 1: filtering never affects verification.
 
-Key behaviors proven: exclude wins when a file matches both lists (`debug.log`),
-the reward file survives any include list, and all trials scored reward 1, so
-filtering never affects verification.
-
-## Nested-folder interaction (`configs/nested-*.yaml`)
-
-| Scenario | Agent filters | Result |
-|---|---|---|
-| nested-exclude-sub | include `parent/*`, exclude `parent/sub/*` | `parent/keep.txt` survives, subfolder carved out |
-| nested-exclude-parent | include `parent/sub/*`, exclude `parent/*` | nothing downloaded: include cannot rescue files from an excluded parent (fnmatch `*` crosses `/`) |
-
-The empty result logs a warning instead of failing the trial:
-
-```
-No files in '/logs/agent' matched include=['parent/sub/*'] exclude=['parent/*']; downloading nothing
-```
-
-(For the nested runs, the solution additionally writes `parent/keep.txt`,
-`parent/sub/inner-1.txt`, and `parent/sub/inner-2.txt` under `/logs/agent`.)
+Spot-checks confirmed per scenario: exclude removes exactly the matched files;
+include keeps only matches; when a file is in both lists (`debug.log`), exclude
+wins; and `reward.txt` always survives. Two extra nested-folder runs
+(`configs/nested-*.yaml`, also config/CLI pairs) confirmed the same rule on
+folder overlap: include `parent/*` + exclude `parent/sub/*` carves the subfolder
+out, while the reverse downloads nothing (include cannot rescue files from an
+excluded parent) and logs a warning instead of failing the trial.
